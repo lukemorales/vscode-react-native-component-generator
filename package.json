@@ -1,0 +1,82 @@
+{
+	"name": "react-native-component-generator",
+	"displayName": "React-Native Component Generator",
+	"description": "Generate React-Native Component structure from easily customizable templates",
+	"author": "Luke Morales",
+	"license": "MIT",
+	"version": "0.1.0",
+	"publisher": "lukemorales",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lukemorales/vscode-react-native-component-generator"
+	},
+	"engines": {
+		"vscode": "^1.5.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"icon": "images/icon.png",
+	"galleryBanner": {
+		"color": "#232527",
+		"theme": "dark"
+	},
+	"activationEvents": [
+		"workspaceContains:package.json"
+	],
+	"main": "./extension",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "react-native-component-generator configuration",
+			"properties": {
+				"react-native-component-generator.conditionals": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"uniqueItems": true,
+					"default": [
+						"StyledComponents"
+					],
+					"description": "Toggle certain portions of your templates with these named booleans."
+				},
+				"react-native-component-generator.rnComponentTemplatePath": {
+					"type": "string",
+					"default": "",
+					"description": "Absolute path to custom **rnComponent** template directory. If left blank, defaults to built-in template."
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "extension.generate_rnComponent",
+				"title": "Generate React Native Component"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "resourceScheme == file",
+					"command": "extension.generate_rnComponent",
+					"group": "navigation@10"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install"
+	},
+	"devDependencies": {
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0",
+		"mocha": "^2.3.3",
+		"eslint": "^3.6.0",
+		"@types/node": "^6.0.40",
+		"@types/mocha": "^2.2.32"
+	},
+	"dependencies": {
+		"fs-plus": "^2.9.3",
+		"path": "^0.12.7"
+	}
+}
